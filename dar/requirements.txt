@@ -1,0 +1,4 @@
+setuptools
+click
+dbt-core
+dbt-duckdb
