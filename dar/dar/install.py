@@ -4,7 +4,7 @@ import click
 
 @click.command()
 @click.option('--path', default='analytics', help='Path to create the analytics directory')
-def install_analytics(path):
+def setup(path):
     """Install and set up the analytics environment"""
     # Create analytics directory
     os.makedirs(path, exist_ok=True)
@@ -12,7 +12,7 @@ def install_analytics(path):
 
     # Install dbt
     click.echo("Installing dbt...")
-    subprocess.run(["pip", "install", "dbt-core", "dbt-postgres"])
+    subprocess.run(["pip", "install", "dbt-core", "dbt-duckdb"])
 
     # Initialize dbt project
     click.echo("Initializing dbt project...")
@@ -23,9 +23,15 @@ def install_analytics(path):
     subprocess.run(["npx", "degit", "evidence-dev/template", "reports"])
     subprocess.run(["npm", "--prefix", "./reports", "install"])
 
-    # Create additional directories
-    dirs = ['analyses', 'docs', 'macros', 'seeds', 'snapshots', 'tests']
+    # Create additional directories in analytics directory
+    dirs = ['data', 'scripts']
     for dir_name in dirs:
+        os.makedirs(os.path.join(path, dir_name), exist_ok=True)
         os.makedirs(dir_name, exist_ok=True)
 
-    click.echo("Analytics environment set up successfully!")
+    click.echo("Analytics folder set up successfully!")
+
+    ## Make 'site' directory at same level as 'analytics' directory
+    os.makedirs('site', exist_ok=True)
+
+    click.echo("Site folder set up successfully!")
