@@ -5,7 +5,7 @@ from .install import setup
 
 @click.group()
 def cli():
-    """Darrell Analytics Runner: dbt and Evidence BI orchestrator"""
+    """Darrell: Orchestrating dbt and Evidence BI for an Open Source Analytics Stack"""
     pass
 
 cli.add_command(setup)

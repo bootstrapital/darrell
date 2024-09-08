@@ -33,3 +33,8 @@ def test(select):
 def docs():
     """Generate dbt documentation"""
     subprocess.run(["dbt", "docs", "generate"])
+
+@dbt_cli.command()
+def compile():
+    """Compile dbt models"""
+    subprocess.run(["dbt", "compile"])

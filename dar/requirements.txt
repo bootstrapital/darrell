@@ -1,4 +1,5 @@
-setuptools
 click
 dbt-core
 dbt-duckdb
+pexpect
+setuptools
